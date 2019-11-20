@@ -39,12 +39,12 @@ int main()
 	}
 
 	if(new){
-		array[0] =  1;
-		array[1] =  0;
-		array[2] =  1;
+		array[0] =  1; //1st
+		array[1] =  0; //2nd
+		array[2] =  1; //total
 	} else {
-		array[0] += 1;
-		array[2] += 1;
+		array[0] += 1; //1st
+		array[2] += 1; //total
 	}
 
 	printf(	"Program 1 was spawn %d times, program 2 - %d times, total - %d times\n",

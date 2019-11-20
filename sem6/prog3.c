@@ -23,7 +23,7 @@ int main(){
 
 	int result;
 
-	result = pthread_create( &thid,(pthread_attr_t *)NULL, mythread, NULL);
+	result = pthread_create(&thid,(pthread_attr_t *)NULL, mythread, NULL);
 
 	if(result != 0){
 		printf ("Error on thread create, return value = %d\n", result);

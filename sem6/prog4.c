@@ -4,6 +4,8 @@
 
 int a = 0;
 
+int b = 5;
+
 void *mythread(void *dummy){
 
 	pthread_t mythid;
@@ -12,8 +14,18 @@ void *mythread(void *dummy){
 	
 //	a = a + 1;
 	
-	printf("Thread %d, Calculation result = %d\n", mythid, ++a);
+	printf("Thread %d, a = %d\n", mythid, ++a);
 
+	return NULL;
+}
+
+void *mythread2(void *dummy){
+	pthread_t mythid;
+
+	mythid = pthread_self();
+
+	printf("Tread %d, b = %d\n", mythid, ++b);
+	
 	return NULL;
 }
 
@@ -33,7 +45,7 @@ int main(){
 
 	printf("Thread 1 created: thid1 = %d\n", thid1);
 
-	result = pthread_create( &thid2,(pthread_attr_t *)NULL, mythread, NULL);
+	result = pthread_create( &thid2,(pthread_attr_t *)NULL, mythread2, NULL);
 
 	if(result != 0){
 		printf ("Error on thread create, return value = %d\n", result);
@@ -47,7 +59,7 @@ int main(){
 
 	/*a = a + 1;*/
 
-	printf("Main thread %d, Calculation result = %d\n", mythid, ++a);
+	printf("Main thread %d, a = %d\n", mythid, ++a);
 
 	pthread_join(thid1, (void **)NULL);
 
