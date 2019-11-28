@@ -5,7 +5,7 @@
 #include <sys/ipc.h>
 #include <sys/sem.h>
 
-#define NUMBER 10
+#define NUMBER 1000
 #define LEN_FOR_CHILD 4
 #define LEN_FOR_PARENT 5
 #define PARENT_SEND "123"

@@ -16,6 +16,8 @@ int main(){
 
     struct sembuf mybuf;
 
+	int begin = 1;
+
     sem_key = ftok(sem_pathname, 1);
 
     if((semid = semget(sem_key, 1, 0666 | IPC_CREAT)) < 0){
@@ -24,14 +26,14 @@ int main(){
     }
 
 
-   int shmid;
+   	int shmid;
 
-   int new = 1;
+   	int new = 1;
 
-   char pathname[] = "prog3.1.c";
+   	char pathname[] = "prog3.1.c";
 
-   key_t key;
-
+   	key_t key;
+	
 	if((key = ftok(pathname,0)) < 0){
 		printf("Can't generate key\n");
 		exit(-1);
@@ -59,16 +61,6 @@ int main(){
       	printf("Can't attach shared memory\n");
 	  	exit(-1);
    	}
-	
-	mybuf.sem_num = 0;
-    mybuf.sem_op  = -1;
-    mybuf.sem_flg = 0;
-
-	if(semop(semid, &mybuf, 1) < 0){
-        printf("Can\'t wait for condition\n");
-        exit(-1);
-    }
-
 	/*critical section*/
    	if(new){
  		array[0] =  1;
@@ -79,9 +71,18 @@ int main(){
 
 	}else {
 
+	mybuf.sem_num = 0;
+    mybuf.sem_op  = -1;
+    mybuf.sem_flg = 0;
+
+	if(semop(semid, &mybuf, 1) < 0){
+        printf("Can\'t wait for condition\n");
+        exit(-1);
+    }
+
 		array[0] += 1;
 
-		for(long long int i = 0; i < 20000000000L; i++); //10
+		for(long long int i = 0; i < 5000000000L; i++); //9
 
 		array[2] += 1;
 	}

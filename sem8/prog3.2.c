@@ -59,16 +59,6 @@ int main(){
       	printf("Can't attach shared memory\n");
 	  	exit(-1);
    	}
-
-    mybuf.sem_num = 0;
-    mybuf.sem_op  = -1; 
-    mybuf.sem_flg = 0;
-    
-    if(semop(semid, &mybuf, 1) < 0){ 
-        printf("Can\'t wait for condition\n");
-        exit(-1);
-    }   
-
 	/*critical section*/
    	if(new){
  		array[0] =  0;
@@ -79,9 +69,19 @@ int main(){
 
 	}else {
 
+    mybuf.sem_num = 0;
+    mybuf.sem_op  = -1; 
+    mybuf.sem_flg = 0;
+    
+    if(semop(semid, &mybuf, 1) < 0){ 
+        printf("Can\'t wait for condition\n");
+        exit(-1);
+    }   
+
+
 		array[1] += 1;
 
-		for(long int i = 0; i < 10000000000L; i++); //1
+		for(long int i = 0; i < 10000000000L; i++); //10
 
 		array[2] += 1;
 	}
