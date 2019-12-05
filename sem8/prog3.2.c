@@ -60,6 +60,12 @@ int main(){
 	  	exit(-1);
    	}
 	/*critical section*/
+
+
+    mybuf.sem_num = 0;
+    mybuf.sem_op  = -1; 
+    mybuf.sem_flg = 0;
+ 
    	if(new){
  		array[0] =  0;
 
@@ -68,11 +74,7 @@ int main(){
 		array[2] =  1;
 
 	}else {
-
-    mybuf.sem_num = 0;
-    mybuf.sem_op  = -1; 
-    mybuf.sem_flg = 0;
-    
+   
     if(semop(semid, &mybuf, 1) < 0){ 
         printf("Can\'t wait for condition\n");
         exit(-1);
