@@ -46,23 +46,6 @@ void print_time(struct stat *mystat){
 	strftime(date, 50, "%b  %d  %H:%M\t", localtime(&(mystat->st_ctime)));
     printf("%s", date);
 }
-/*
-void print_time(const time_t st_ctime){
-
-	time_t now = time(0);
-
-	char date[50] = {'\0'};
-
-	if((localtime(&st_ctime))->tm_year != localtime(&now)->tm_year){
-        strftime(date, 50, "%b\t%d\t%Y\t", localtime(&st_ctime));
-        printf("%s", date);
-    }
-    else{
-        strftime(date, 50, "%b\t%d\t%H:%M\t", localtime(&st_ctime));
-        printf("%s", date);
-    }
-}
-*/
 int main(){
 	
 	//taking dir name
